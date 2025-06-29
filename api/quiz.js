@@ -1,4 +1,15 @@
 export default async function handler(req, res) {
+  // ✅ Tambahkan CORS agar bisa diakses dari frontend lokal
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // ✅ Tangani preflight request dari browser
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  // ❌ Tolak selain POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
@@ -10,6 +21,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    // 🔁 Kirim ke proxy saya yang sudah siap tanpa API key
     const proxyResponse = await fetch("https://ai-fathur.vercel.app/api/quiz", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
