@@ -1,4 +1,12 @@
 export default function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
@@ -14,16 +22,12 @@ export default function handler(req, res) {
   for (let i = 1; i <= jumlah; i++) {
     questions.push({
       question: `Apa inti dari materi berikut: "${materi.slice(0, 50)}..."?`,
-      options: [
-        "Penjelasan A",
-        "Penjelasan B",
-        "Penjelasan C",
-        "Penjelasan D"
-      ],
+      options: ["Penjelasan A", "Penjelasan B", "Penjelasan C", "Penjelasan D"],
       answer: 0
     });
   }
 
   return res.status(200).json({ questions });
 }
+
 
