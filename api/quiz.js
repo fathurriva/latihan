@@ -11,14 +11,13 @@ export default function handler(req, res) {
 
   const questions = [];
 
-  for (let i = 0; i < jumlah; i++) {
+  for (let i = 1; i <= jumlah; i++) {
     questions.push({
-      question: `Apa yang kamu pahami tentang: ${materi.slice(0, 30)}...?`,
-      options: ["A", "B", "C", "D"],
+      question: `Apa inti dari: ${materi.slice(0, 40)}...?`,
+      options: ["Penjelasan A", "Penjelasan B", "Penjelasan C", "Penjelasan D"],
       answer: 0
     });
   }
 
   return res.status(200).json({ questions });
 }
-
