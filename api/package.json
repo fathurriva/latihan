@@ -1,4 +1,11 @@
 {
-  "name": "api",
-  "version": "1.0.0"
+  "name": "latihan-three-api",
+  "version": "1.0.0",
+  "description": "API untuk generate soal berdasarkan materi",
+  "main": "api/quiz.js",
+  "scripts": {
+    "start": "node api/quiz.js"
+  },
+  "author": "Fathur",
+  "license": "MIT"
 }
